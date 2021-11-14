@@ -20,6 +20,7 @@ class VamosCozinharApp extends StatefulWidget {
 class _VamosCozinharAppState extends State<VamosCozinharApp> {
   Settings settings = Settings();
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _filterMeals(Settings settings) {
     setState(() {
@@ -38,13 +39,28 @@ class _VamosCozinharAppState extends State<VamosCozinharApp> {
     });
   }
 
+  void _toggleFavorite(Meal meal) {
+    setState(() {
+      _favoriteMeals.contains(meal)
+          ? _favoriteMeals.remove(meal)
+          : _favoriteMeals.add(meal);
+    });
+  }
+
+  bool _isFavorite(Meal meal) {
+    return _favoriteMeals.contains(meal);
+  }
+
   _getRoutes(BuildContext ctx) {
     return {
-      AppRoutes.HOME: (ctx) => const TabsBottonScreen(),
+      AppRoutes.HOME: (ctx) => TabsBottonScreen(favoriteMeals: _favoriteMeals),
       // AppRoutes.HOME: (ctx) => const TabsScreen(),
       AppRoutes.CATEGORIES_MEALS: (ctx) =>
           CategoriesMealsScreen(meals: _availableMeals),
-      AppRoutes.MEAL_DETAIL: (ctx) => const MealDetailScreen(),
+      AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(
+            onToggleFavorited: _toggleFavorite,
+            isFavorite: _isFavorite,
+          ),
       AppRoutes.SETTINGS: (ctx) => SettingsScreen(
             onSettingsChanged: _filterMeals,
             settings: settings,
