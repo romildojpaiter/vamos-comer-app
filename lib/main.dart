@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meals/screens/categories_meals_screen.dart';
 import 'package:meals/screens/meal_detail_screen.dart';
+import 'package:meals/screens/settings_screen.dart';
+import 'package:meals/screens/tabs_botton_screen.dart';
 import 'package:meals/screens/tabs_screen.dart';
 import 'package:meals/utils/app_routes.dart';
 
@@ -13,9 +15,11 @@ class VamosCozinharApp extends StatelessWidget {
 
   _getRoutes(BuildContext ctx) {
     return {
-      AppRoutes.HOME: (ctx) => const TabsScreen(),
+      AppRoutes.HOME: (ctx) => const TabsBottonScreen(),
+      // AppRoutes.HOME: (ctx) => const TabsScreen(),
       AppRoutes.CATEGORIES_MEALS: (ctx) => const CategoriesMealsScreen(),
       AppRoutes.MEAL_DETAIL: (ctx) => const MealDetailScreen(),
+      AppRoutes.SETTINGS: (ctx) => const SettingsScreen(),
     };
   }
 

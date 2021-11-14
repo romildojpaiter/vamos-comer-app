@@ -25,7 +25,7 @@ class TabsScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             CategoriesScreen(),
             FavoriteScreen(),
