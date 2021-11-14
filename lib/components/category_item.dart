@@ -7,7 +7,7 @@ class CategoryItem extends StatelessWidget {
 
   final Category category;
 
-  const CategoryItem(this.category);
+  CategoryItem(this.category);
 
   void _selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed(
